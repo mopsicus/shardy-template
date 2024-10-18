@@ -5,6 +5,9 @@ import { Logger, LoggerScope, Server, Task, Tools } from 'shardy';
 import { MyJSON } from './MyJSON';
 import { MyHandshake } from './MyHandshake';
 import { MyService } from './MyService';
+import { BeforeExtension } from './extensions/BeforeExtension';
+import { AfterExtension } from './extensions/AfterExtension';
+import { NextExtension } from './extensions/NextExtension';
 // import { Commands } from './Commands';
 
 /**
@@ -58,6 +61,10 @@ const init = async (): Promise<void> => {
   const serializer = new MyJSON();
   const service = new MyService();
   const server = new Server(process.env.SERVICE_HOST, process.env.SERVICE_PORT, service, { validator, serializer, commands });
+  // use extensions
+  server.use(new BeforeExtension());
+  server.use(new AfterExtension());
+  server.use(new NextExtension());
   server.start();
 };
 
