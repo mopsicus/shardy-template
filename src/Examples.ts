@@ -1,6 +1,4 @@
-import { Bot, PayloadData, TransportType } from 'shardy';
-import { MyHandshake } from './MyHandshake';
-import { MyJSON } from './MyJSON';
+import { Bot, PayloadData, TransportType, DefaultValidator, DefaultSerializer } from 'shardy';
 import { setTimeout } from 'timers';
 
 /**
@@ -22,8 +20,8 @@ export class Examples {
    * Creates an instance of Examples
    */
   constructor() {
-    const validator = new MyHandshake();
-    const serializer = new MyJSON();
+    const validator = new DefaultValidator();
+    const serializer = new DefaultSerializer();
     this.bot = new Bot(process.env.SERVICE_HOST, process.env.SERVICE_PORT, process.env.SERVICE_TRANSPORT as TransportType, { validator, serializer });
     this.bot.onConnect = () => {
       this.bot.handshake();

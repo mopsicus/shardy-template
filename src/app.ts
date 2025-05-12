@@ -1,9 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
-import { Logger, LoggerScope, Server, Task, Tools } from 'shardy';
-import { MyJSON } from './MyJSON';
-import { MyHandshake } from './MyHandshake';
+import { Logger, LoggerScope, Server, Task, Tools, DefaultValidator, DefaultSerializer } from 'shardy';
 import { MyService } from './MyService';
 import { BeforeExtension } from './extensions/BeforeExtension';
 import { AfterExtension } from './extensions/AfterExtension';
@@ -57,8 +55,8 @@ const init = async (): Promise<void> => {
   log.info(`initialization`, LoggerScope.System);
   await loadCommands(); // load commands
   // commands = await Commands.load(); // load commands manually, alternative, uncomment import for using
-  const validator = new MyHandshake();
-  const serializer = new MyJSON();
+  const validator = new DefaultValidator();
+  const serializer = new DefaultSerializer();
   const service = new MyService();
   const server = new Server(process.env.SERVICE_HOST, process.env.SERVICE_PORT, service, { validator, serializer, commands });
   // use extensions
