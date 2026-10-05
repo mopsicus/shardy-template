@@ -1,6 +1,6 @@
 {
   "name": "shardy-template",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Template service for Shardy",
   "license": "MIT",
   "private": true,
@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "dotenv": "^16.6.1",
-    "shardy": "^1.3.0",
+    "shardy": "^1.4.0",
     "winston": "^3.19.0",
     "ws": "^8.22.0"
   },

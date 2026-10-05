@@ -244,6 +244,6 @@ export class Examples {
    * Finally, see received responses to bot
    */
   async run(): Promise<void> {
-    this.bot.start();
+    await this.bot.connect();
   }
 }

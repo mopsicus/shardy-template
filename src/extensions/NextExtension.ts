@@ -38,21 +38,21 @@ export class NextExtension implements Extension {
    * Event when new client connected
    */
   async onClientConnect(client: Client): Promise<void> {
-    this.log.info(`connected ${client.id}`, LoggerScope.Debug);
+    this.log.info(`connected ${client.connectionId}`, LoggerScope.Debug);
   }
 
   /**
    * Event when client disconnected
    */
   async onClientDisconnect(client: Client, reason: DisconnectReason): Promise<void> {
-    this.log.info(`disconnected ${client.id} with ${reason}`, LoggerScope.Debug);
+    this.log.info(`disconnected ${client.connectionId} with ${reason}`, LoggerScope.Debug);
   }
 
   /**
    * Event when client made a handshake
    */
   async onClientReady(client: Client): Promise<void> {
-    this.log.info(`ready ${client.id}`, LoggerScope.Debug);
+    this.log.info(`ready ${client.connectionId}`, LoggerScope.Debug);
   }
 
   /**

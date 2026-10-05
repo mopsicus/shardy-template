@@ -71,8 +71,8 @@ export class MyService implements Service {
    * @param {Client} client Client instance
    */
   async onConnect(client: Client): Promise<void> {
-    this.log.info(`client ${client.id} connected`, LoggerScope.System);
-    this.users.set(client.id, client);
+    this.log.info(`client ${client.connectionId} connected`, LoggerScope.System);
+    this.users.set(client.connectionId, client);
   }
 
   /**
@@ -81,7 +81,7 @@ export class MyService implements Service {
    * @param {Client} client Client instance
    */
   async onReady(client: Client): Promise<void> {
-    this.log.info(`client ${client.id} ready`, LoggerScope.System);
+    this.log.info(`client ${client.connectionId} ready`, LoggerScope.System);
   }
 
   /**
@@ -90,9 +90,9 @@ export class MyService implements Service {
    * @param {Client} client
    */
   async onDisconnect(client: Client): Promise<void> {
-    this.log.info(`client ${client.id} disconnected`, LoggerScope.System);
-    this.users.delete(client.id);
-    this.removeFromTimer(client.id);
+    this.log.info(`client ${client.connectionId} disconnected`, LoggerScope.System);
+    this.users.delete(client.connectionId);
+    this.removeFromTimer(client.connectionId);
   }
 
   /**

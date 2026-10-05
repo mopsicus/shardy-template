@@ -13,8 +13,8 @@ export const timer = (commander: Commander, payload: PayloadData, service: Servi
   }
   const status = payload.data.toString();
   if (status === 'yes') {
-    service.addToTimer(commander.cid);
+    service.addToTimer(commander.connectionId);
   } else {
-    service.removeFromTimer(commander.cid);
+    service.removeFromTimer(commander.connectionId);
   }
 };
