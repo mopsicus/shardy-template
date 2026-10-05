@@ -1,4 +1,4 @@
-import { Commander, PayloadData } from 'shardy';
+import { Commander, PayloadData, Service } from 'shardy';
 import { MyService } from '../MyService';
 
 /**
@@ -7,7 +7,10 @@ import { MyService } from '../MyService';
  * Simple check received data: yes or no, to subscribe or unsubscribe
  * Communicate with main service class
  */
-export const timer = (commander: Commander, payload: PayloadData, service: MyService) => {
+export const timer = (commander: Commander, payload: PayloadData, service: Service) => {
+  if (!(service instanceof MyService)) {
+    throw new TypeError('timer command requires MyService');
+  }
   const status = payload.data.toString();
   if (status === 'yes') {
     service.addToTimer(commander.cid);

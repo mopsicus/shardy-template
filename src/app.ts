@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
-import { Logger, LoggerScope, Server, Task, Tools, DefaultValidator, DefaultSerializer } from 'shardy';
+import { Logger, LoggerScope, Server, CommandHandler, Tools, DefaultValidator, DefaultSerializer } from 'shardy';
 import { MyService } from './MyService';
 import { BeforeExtension } from './extensions/BeforeExtension';
 import { AfterExtension } from './extensions/AfterExtension';
@@ -22,7 +22,7 @@ const COMMANDS_DIR = 'commands';
 /**
  * Commands list
  */
-const commands = new Map<string, Task>();
+const commands = new Map<string, CommandHandler>();
 
 /**
  * Local logger
@@ -37,13 +37,13 @@ const log = new Logger([], Tools.getTag(module));
 const loadCommands = async (): Promise<void> => {
   const ext = '.ts';
   const root = `./src/${COMMANDS_DIR}`;
-  Tools.walk(root).forEach(async (file) => {
+  for (const file of Tools.walk(root)) {
     const name = path.basename(file, ext);
     const dir = path.parse(file).dir.split(path.sep).slice(1).join(path.sep);
-    const task = await import(`./${path.join(dir, name)}`);
+    const task = await import(`./${path.join(dir, name)}.js`);
     commands.set(name, task[name]);
     log.info(`command ${name} loaded`, LoggerScope.System);
-  });
+  }
 };
 
 /**

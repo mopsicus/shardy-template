@@ -1,4 +1,4 @@
-import { Task } from 'shardy';
+import { CommandHandler } from 'shardy';
 import { db } from './commands/db';
 import { echo } from './commands/echo';
 import { fail } from './commands/fail';
@@ -10,7 +10,7 @@ import { request } from './commands/request';
 /**
  * Commands map
  */
-type List = Map<string, Task>;
+type List = Map<string, CommandHandler>;
 
 /**
  * Demo for manual loading commands
@@ -23,10 +23,10 @@ export class Commands {
    * Load commands and return to app
    *
    * @static
-   * @return {*}  {Promise<List>} Map with Tasks
+   * @return {*}  {Promise<List>} Map with command handlers
    */
   static async load(): Promise<List> {
-    const list = new Map<string, Task>();
+    const list = new Map<string, CommandHandler>();
     list.set('db', db);
     list.set('echo', echo);
     list.set('fail', fail);

@@ -25,19 +25,32 @@ Shardy – это фреймворк для онлайн игр и прилож�
 
 Начать разработку своего проекта с помощью Shardy очень просто:
 
+Используйте Node.js 24 и npm 11.12.1 (требования указаны в `.nvmrc` и `package.json`).
+
 1. Склонируйте шаблон сервиса
     ```
     git clone git@github.com:mopsicus/shardy-template.git
     ```
 2. Установите Shardy и все зависимости
     ```
-    npm install
+    npm ci
     ```
 3. Измените `.env.dev`
 4. Запустить дебаг режим
     ```
     npm run debug
     ```
+    Сервис продолжит работать в режиме наблюдения за изменениями. Нажмите `Ctrl+C`, чтобы остановить его.
+
+### Проверки при разработке
+
+При необходимости выполните проверки:
+
+```
+npm run typecheck
+npm run lint
+npm run format:check
+```
 
 ### Содержимое шаблона
 
@@ -72,7 +85,7 @@ this.bot.request('status', (response) => {
 // запрос с ошибкой в ответе
 this.bot.request('fail', (response) => {
     if (response.error.length > 0) {
-        this.bot.log.error(`test request fail: ${response.data}`);
+        this.bot.log.error(`test request fail: ${response.error}`);
     }
 });
 

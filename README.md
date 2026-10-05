@@ -25,19 +25,32 @@ Shardy is a framework for online games and applications on Node.js. It provides 
 
 It's really easy to start developing your project with Shardy:
 
+Use Node.js 24 and npm 11.12.1 (the required versions are recorded in `.nvmrc` and `package.json`).
+
 1. Clone a service template or creare a new one
     ```
     git clone git@github.com:mopsicus/shardy-template.git
     ```
 2. Install Shardy and all dependencies:
     ```
-    npm install
+    npm ci
     ```
 3. Edit `.env.dev`
 4. Run debug mode
     ```
     npm run debug
     ```
+    This starts the service and keeps running in watch mode. Press `Ctrl+C` to stop it.
+
+### Development checks
+
+Run the following checks as needed:
+
+```
+npm run typecheck
+npm run lint
+npm run format:check
+```
 
 ### Template content
 
@@ -72,7 +85,7 @@ this.bot.request('status', (response) => {
 // request with fail
 this.bot.request('fail', (response) => {
     if (response.error.length > 0) {
-        this.bot.log.error(`test request fail: ${response.data}`);
+        this.bot.log.error(`test request fail: ${response.error}`);
     }
 });
 

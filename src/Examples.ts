@@ -154,7 +154,7 @@ export class Examples {
       this.bot.log.info(`|                    |`);
       this.bot.log.info(`----------------------`);
       if (response.error.length > 0) {
-        this.bot.log.error(`test request fail: ${response.data}`);
+        this.bot.log.error(`test request fail: ${response.error}`);
       }
     });
   }
