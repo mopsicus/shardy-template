@@ -11,7 +11,7 @@ export const timer = (commander: Commander, payload: PayloadData, service: Servi
   if (!(service instanceof MyService)) {
     throw new TypeError('timer command requires MyService');
   }
-  const status = payload.data.toString();
+  const status = String(payload.data);
   if (status === 'yes') {
     service.addToTimer(commander.connectionId);
   } else {

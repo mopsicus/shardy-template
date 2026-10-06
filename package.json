@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "dotenv": "^16.6.1",
-    "shardy": "^1.4.0",
+    "shardy": "^1.4.1",
     "winston": "^3.19.0",
     "ws": "^8.22.0"
   },
